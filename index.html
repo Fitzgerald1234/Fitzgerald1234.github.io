@@ -2,7 +2,7 @@
 <html>
   <body>
 <script>
-fetch('http://localhost/api.php')
+fetch('http://localhost:8000/api.php')
     .then(response => {
       if (!response.ok) {
         throw new Error('Erreur de requête API : ' + response.statusText);
